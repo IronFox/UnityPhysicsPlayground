@@ -31,6 +31,8 @@ public class PlaceWheel : MonoBehaviour {
         }
 
         t = collider.steerAngle = 25f * steerFactor * owner.steer;
+        if (!((collider.steerAngle < 0f == accelFactor < 0f) ^ (steerFactor > 0f)))
+            collider.steerAngle *= 0.75f;
 
 
         rotationAt += Time.deltaTime * collider.rpm / 60f * 360f * accelFactor;

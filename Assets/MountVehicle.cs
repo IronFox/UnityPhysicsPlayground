@@ -16,15 +16,17 @@ public class MountVehicle : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        
-
-        if (!mounted && Vector3.Distance(vehicle.transform.position, transform.position) < 5f)
+        if (!mounted)
         {
-            mounted = true;
-            GetComponent<MoveCharacter>().enabled = false;
+            if (Vector3.Distance(vehicle.transform.position, transform.position) < 5f)
+            {
+                mounted = true;
+                GetComponent<MoveCharacter>().enabled = false;
+            }
+            if (Input.GetKeyUp(KeyCode.Escape))
+                Application.Quit();
         }
-
-        if (mounted)
+        else
         {
             if (Input.GetKeyUp(KeyCode.Escape))
             {
